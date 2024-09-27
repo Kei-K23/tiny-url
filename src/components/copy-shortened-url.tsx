@@ -4,49 +4,52 @@ import { Button } from "./ui/button";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 
-type CreateShortenUrlProps = {
+type CopyShortenedUrlProps = {
+  shortURL: string;
   longURL: string;
-  setLongURL: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function CreateShortenUrl({
+export default function CopyShortenedUrl({
   longURL,
-  setLongURL,
-}: CreateShortenUrlProps) {
+  shortURL,
+}: CopyShortenedUrlProps) {
   return (
     <Card className="max-w-2xl mt-10 md:mt-12 mx-auto">
       <CardHeader>
-        <CardTitle className="text-lg md:text-xl">
-          Paste the URL to be shortened
-        </CardTitle>
+        <CardTitle className="text-lg md:text-xl">Your shortened URL</CardTitle>
+        <CardDescription>
+          Copy the short link and share it in messages, texts, posts, websites
+          and other locations with tiny amount of text.
+        </CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="flex h-10 md:h-12">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="flex h-10 md:h-12"
+        >
           <Input
-            value={longURL}
-            onChange={(e) => setLongURL(e.target.value)}
+            value={shortURL}
             className="h-full text-sm md:text-[16px]"
             placeholder="Paste your long URL here..."
+            readOnly
           />
           <Button
             variant={"secondary"}
             className="h-full text-sm md:text-[16px]"
           >
-            Shorten URL
+            Copy URL
           </Button>
         </form>
+        <p className="mt-4">Long URL: {longURL}</p>
       </CardContent>
       <CardFooter>
-        <p>
-          Make your links cleaner, more shareable, and easier to remember. Our
-          URL shortener service transforms long, cluttered URLs into simple,
-          clickable links in just seconds.
-        </p>
+        <Button>Shorten another URL</Button>
       </CardFooter>
     </Card>
   );
