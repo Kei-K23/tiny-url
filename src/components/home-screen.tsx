@@ -9,6 +9,7 @@ import { URLMapping } from "@/type";
 import { getStorageItems } from "@/lib/storage";
 import FeaturesSection from "./features-section";
 import Footer from "./footer";
+import HeaderSection from "./header-section";
 
 export default function HomeScreen() {
   const [longURL, setLongURL] = useState<string>("");
@@ -31,6 +32,7 @@ export default function HomeScreen() {
 
   return (
     <main className="p-4">
+      <HeaderSection />
       <h1 className="text-center mt-8 md:mt-10 text-2xl md:text-4xl font-bold text-sky-500">
         Tiny-URL
       </h1>
