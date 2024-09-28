@@ -15,7 +15,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { removeStorageItemsByHashValue } from "@/lib/storage";
 
-export const columns: ColumnDef<URLMapping>[] = [
+export const columns = (
+  updateCallback: () => void
+): ColumnDef<URLMapping>[] => [
   {
     accessorKey: "shortUrl",
     header: "Short URL",
@@ -54,12 +56,13 @@ export const columns: ColumnDef<URLMapping>[] = [
               Copy long URL
             </DropdownMenuItem>
             <DropdownMenuItem
-              onClick={() =>
+              onClick={() => {
                 removeStorageItemsByHashValue(
                   "tiny_url_shortened",
                   urlMapping.shortUrl
-                )
-              }
+                );
+                updateCallback();
+              }}
               className="text-red-500 focus:text-red-600"
             >
               Delete

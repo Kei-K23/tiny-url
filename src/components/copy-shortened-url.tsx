@@ -70,7 +70,7 @@ export default function CopyShortenedUrl({
                   Copy URL
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent className="w-20 text-center bg-neutral-300">
                 {isCopied ? <p>Copied</p> : <p>Copy</p>}
               </TooltipContent>
             </Tooltip>

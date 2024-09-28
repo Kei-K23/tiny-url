@@ -23,15 +23,10 @@ export function removeAllStorageItems(key: string) {
   localStorage.removeItem(key);
 }
 
-export function removeStorageItemsByHashValue(key: string, hashKey: string) {
-  // Retrieve existing array from localStorage or initialize an empty array
-  let existingItems = JSON.parse(
-    localStorage.getItem(key) || "[]"
-  ) as URLMapping[];
+export function removeStorageItemsByHashValue(key: string, hashValue: string) {
+  const items = getStorageItems(key);
+  const updatedItems = items.filter((item) => item.shortUrl !== hashValue);
+  localStorage.setItem(key, JSON.stringify(updatedItems));
 
-  // Remove item
-  existingItems = existingItems.filter((item) => item.shortUrl !== hashKey);
-
-  // Store the updated array back to localStorage
-  localStorage.setItem(key, JSON.stringify(existingItems));
+  return updatedItems;
 }

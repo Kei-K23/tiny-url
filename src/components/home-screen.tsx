@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import CreateShortenUrl from "./create-shorten-url";
 import CopyShortenedUrl from "./copy-shortened-url";
 import { DataTable } from "./data-table/table";
@@ -13,10 +13,19 @@ export default function HomeScreen() {
   const [shortURL, setShortURL] = useState<string>("");
   const [storedData, setStoredData] = useState<URLMapping[]>([]);
 
-  useEffect(() => {
-    const data = getStorageItems("tiny_url_shortened");
+  const updateStoredData = useCallback(() => {
+    let data = getStorageItems("tiny_url_shortened");
+    // Sort data by 'createdAt' in descending order (latest first)
+    data = data.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
     setStoredData(data);
   }, []);
+
+  useEffect(() => {
+    updateStoredData();
+  }, [updateStoredData]);
 
   return (
     <main className="p-4">
@@ -44,7 +53,7 @@ export default function HomeScreen() {
         />
       )}
       {storedData.length > 0 ? (
-        <DataTable columns={columns} data={storedData} />
+        <DataTable columns={columns(updateStoredData)} data={storedData} />
       ) : (
         <div className="mt-8 text-center text-neutral-300">
           <p>No recently shortened URLs</p>
