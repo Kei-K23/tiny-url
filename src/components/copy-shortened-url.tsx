@@ -33,7 +33,7 @@ export default function CopyShortenedUrl({
   const shortUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${shortURL}`;
 
   return (
-    <Card className="max-w-2xl mt-10 md:mt-12 mx-auto">
+    <Card className="max-w-4xl mt-10 md:mt-12 mx-auto">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl">Your shortened URL</CardTitle>
         <CardDescription>

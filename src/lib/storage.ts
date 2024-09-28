@@ -23,7 +23,7 @@ export function removeAllStorageItems(key: string) {
   localStorage.removeItem(key);
 }
 
-export function removeStorageItemsById(key: string, hashKey: string) {
+export function removeStorageItemsByHashValue(key: string, hashKey: string) {
   // Retrieve existing array from localStorage or initialize an empty array
   let existingItems = JSON.parse(
     localStorage.getItem(key) || "[]"

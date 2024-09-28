@@ -1,12 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreateShortenUrl from "./create-shorten-url";
 import CopyShortenedUrl from "./copy-shortened-url";
+import { DataTable } from "./data-table/table";
+import { columns } from "./data-table/columns";
+import { URLMapping } from "@/type";
+import { getStorageItems } from "@/lib/storage";
 
 export default function HomeScreen() {
   const [longURL, setLongURL] = useState<string>("");
   const [shortURL, setShortURL] = useState<string>("");
+  const [storedData, setStoredData] = useState<URLMapping[]>([]);
+
+  useEffect(() => {
+    const data = getStorageItems("tiny_url_shortened");
+    setStoredData(data);
+  }, []);
 
   return (
     <main className="p-4">
@@ -31,6 +41,7 @@ export default function HomeScreen() {
           setShortURL={setShortURL}
         />
       )}
+      <DataTable columns={columns} data={storedData} />
     </main>
   );
 }
