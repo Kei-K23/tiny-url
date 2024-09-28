@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Footer() {
+export default function FooterSection() {
   return (
     <footer>
       <p className="text-center text-neutral-400">

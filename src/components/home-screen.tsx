@@ -8,8 +8,8 @@ import { columns } from "./data-table/columns";
 import { URLMapping } from "@/type";
 import { getStorageItems } from "@/lib/storage";
 import FeaturesSection from "./features-section";
-import Footer from "./footer";
 import HeaderSection from "./header-section";
+import FooterSection from "./footer-section";
 
 export default function HomeScreen() {
   const [longURL, setLongURL] = useState<string>("");
@@ -33,7 +33,7 @@ export default function HomeScreen() {
   return (
     <main className="p-4">
       <HeaderSection />
-      <h1 className="text-center mt-8 md:mt-10 text-2xl md:text-4xl font-bold text-sky-500">
+      <h1 className="text-center mt-10 md:mt-12 text-2xl md:text-4xl font-bold text-sky-500">
         Tiny-URL
       </h1>
       <h2 className="mt-3 text-center text-2xl md:text-4xl text-neutral-300">
@@ -65,7 +65,7 @@ export default function HomeScreen() {
         </div>
       )}
       <FeaturesSection />
-      <Footer />
+      <FooterSection />
     </main>
   );
 }

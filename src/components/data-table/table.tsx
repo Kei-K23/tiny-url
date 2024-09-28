@@ -51,7 +51,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="mx-auto max-w-4xl rounded-md border mt-8 p-4">
+    <div className="mx-auto max-w-4xl rounded-lg border mt-8 p-4">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter URL..."

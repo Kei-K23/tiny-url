@@ -9,7 +9,7 @@ export default function HeaderSection() {
     <div className="w-full flex justify-end">
       <div className="flex items-center gap-2">
         <Link
-          href={""}
+          href={"https://github.com/Kei-K23/tiny-url"}
           target="_blank"
           className={cn(
             buttonVariants({
@@ -21,7 +21,7 @@ export default function HeaderSection() {
           <Star className="text-yellow-500 fill-yellow-500 ml-2 size-[20px]" />
         </Link>
         <Link
-          href={""}
+          href={"https://github.com/Kei-K23/tiny-url"}
           target="_blank"
           className={cn(
             buttonVariants({
