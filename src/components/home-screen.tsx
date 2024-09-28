@@ -25,10 +25,10 @@ export default function HomeScreen() {
       )}
       {shortURL !== "" && (
         <CopyShortenedUrl
-          longURL={
-            "https://chat.openai.com/c/c592b21c-aeff-4b8b-b6d0-d906b19cdd9a"
-          }
-          shortURL="https://chat.openai.com"
+          longURL={longURL}
+          shortURL={shortURL}
+          setLongURL={setLongURL}
+          setShortURL={setShortURL}
         />
       )}
     </main>

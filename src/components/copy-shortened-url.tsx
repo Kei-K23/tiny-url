@@ -13,11 +13,15 @@ import {
 type CopyShortenedUrlProps = {
   shortURL: string;
   longURL: string;
+  setLongURL: React.Dispatch<React.SetStateAction<string>>;
+  setShortURL: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function CopyShortenedUrl({
   longURL,
   shortURL,
+  setLongURL,
+  setShortURL,
 }: CopyShortenedUrlProps) {
   return (
     <Card className="max-w-2xl mt-10 md:mt-12 mx-auto">
@@ -49,7 +53,14 @@ export default function CopyShortenedUrl({
         <p className="mt-4">Long URL: {longURL}</p>
       </CardContent>
       <CardFooter>
-        <Button>Shorten another URL</Button>
+        <Button
+          onClick={() => {
+            setLongURL("");
+            setShortURL("");
+          }}
+        >
+          Shorten another URL
+        </Button>
       </CardFooter>
     </Card>
   );

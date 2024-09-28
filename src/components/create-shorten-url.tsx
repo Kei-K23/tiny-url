@@ -46,8 +46,7 @@ export default function CreateShortenUrl({
     const json = await res.json();
 
     if (res.ok && json.shortURL) {
-      setShortURL("json.shortURL");
-      setLongURL("");
+      setShortURL(json.shortURL);
       setIsLoading(false);
       return;
     } else {
