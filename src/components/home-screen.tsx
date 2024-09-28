@@ -7,6 +7,7 @@ import { DataTable } from "./data-table/table";
 import { columns } from "./data-table/columns";
 import { URLMapping } from "@/type";
 import { getStorageItems } from "@/lib/storage";
+import FeaturesSection from "./features-section";
 
 export default function HomeScreen() {
   const [longURL, setLongURL] = useState<string>("");
@@ -60,6 +61,7 @@ export default function HomeScreen() {
           <p>Create your first shortened URL</p>
         </div>
       )}
+      <FeaturesSection />
     </main>
   );
 }
