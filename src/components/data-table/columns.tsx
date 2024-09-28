@@ -60,6 +60,7 @@ export const columns: ColumnDef<URLMapping>[] = [
                   urlMapping.shortUrl
                 )
               }
+              className="text-red-500 focus:text-red-600"
             >
               Delete
             </DropdownMenuItem>

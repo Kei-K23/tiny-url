@@ -55,7 +55,14 @@ export default function CreateShortenUrl({
       setIsLoading(false);
 
       setStorageItems("tiny_url_shortened", json.data); // Update in the localStorage
-      setStoredData((prev) => [...prev, json.data]); // Update the state of table
+      setStoredData((prev) => {
+        if (
+          !prev.some((prevItem) => prevItem.shortUrl === json.data.shortUrl)
+        ) {
+          return [...prev, json.data];
+        }
+        return [...prev];
+      }); // Update the state of table
       return;
     } else {
       // Response have error
