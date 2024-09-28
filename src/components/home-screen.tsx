@@ -8,6 +8,7 @@ import { columns } from "./data-table/columns";
 import { URLMapping } from "@/type";
 import { getStorageItems } from "@/lib/storage";
 import FeaturesSection from "./features-section";
+import Footer from "./footer";
 
 export default function HomeScreen() {
   const [longURL, setLongURL] = useState<string>("");
@@ -62,6 +63,7 @@ export default function HomeScreen() {
         </div>
       )}
       <FeaturesSection />
+      <Footer />
     </main>
   );
 }
