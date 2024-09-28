@@ -10,17 +10,21 @@ import {
 } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { setStorageItems } from "@/lib/storage";
+import { URLMapping } from "@/type";
 
 type CreateShortenUrlProps = {
   longURL: string;
+  storedData: URLMapping[];
   setLongURL: React.Dispatch<React.SetStateAction<string>>;
   setShortURL: React.Dispatch<React.SetStateAction<string>>;
+  setStoredData: React.Dispatch<React.SetStateAction<URLMapping[]>>;
 };
 
 export default function CreateShortenUrl({
   longURL,
   setLongURL,
   setShortURL,
+  setStoredData,
 }: CreateShortenUrlProps) {
   // Define basic loading and error state (I use manual way because this project is quite small to use other data fetching and state management tools)
 
@@ -49,7 +53,9 @@ export default function CreateShortenUrl({
     if (res.ok && json.data) {
       setShortURL(json.data.shortUrl);
       setIsLoading(false);
-      setStorageItems("tiny_url_shortened", json.data);
+
+      setStorageItems("tiny_url_shortened", json.data); // Update in the localStorage
+      setStoredData((prev) => [...prev, json.data]); // Update the state of table
       return;
     } else {
       // Response have error

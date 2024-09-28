@@ -15,6 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Link from "next/link";
 
 type CopyShortenedUrlProps = {
   shortURL: string;
@@ -75,7 +76,12 @@ export default function CopyShortenedUrl({
             </Tooltip>
           </TooltipProvider>
         </form>
-        <p className="mt-4">Long URL: {longURL}</p>
+        <div className="mt-4">
+          Long URL:{" "}
+          <Link href={longURL} className="hover:underline">
+            {longURL}
+          </Link>
+        </div>
       </CardContent>
       <CardFooter>
         <Button
@@ -83,6 +89,7 @@ export default function CopyShortenedUrl({
             setLongURL("");
             setShortURL("");
           }}
+          className="h-full text-sm md:text-[16px]"
         >
           Shorten another URL
         </Button>

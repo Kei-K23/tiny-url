@@ -29,8 +29,10 @@ export default function HomeScreen() {
       {shortURL === "" && (
         <CreateShortenUrl
           longURL={longURL}
+          storedData={storedData}
           setLongURL={setLongURL}
           setShortURL={setShortURL}
+          setStoredData={setStoredData}
         />
       )}
       {shortURL !== "" && (
@@ -41,7 +43,14 @@ export default function HomeScreen() {
           setShortURL={setShortURL}
         />
       )}
-      <DataTable columns={columns} data={storedData} />
+      {storedData.length > 0 ? (
+        <DataTable columns={columns} data={storedData} />
+      ) : (
+        <div className="mt-8 text-center text-neutral-300">
+          <p>No recently shortened URLs</p>
+          <p>Create your first shortened URL</p>
+        </div>
+      )}
     </main>
   );
 }
