@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import {
@@ -9,6 +9,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type CopyShortenedUrlProps = {
   shortURL: string;
@@ -23,6 +29,9 @@ export default function CopyShortenedUrl({
   setLongURL,
   setShortURL,
 }: CopyShortenedUrlProps) {
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  const shortUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${shortURL}`;
+
   return (
     <Card className="max-w-2xl mt-10 md:mt-12 mx-auto">
       <CardHeader>
@@ -35,20 +44,36 @@ export default function CopyShortenedUrl({
       <CardContent>
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="flex h-10 md:h-12"
+          className="flex h-10 md:h-12 gap-1"
         >
           <Input
-            value={shortURL}
+            value={shortUrl}
             className="h-full text-sm md:text-[16px]"
             placeholder="Paste your long URL here..."
             readOnly
           />
-          <Button
-            variant={"secondary"}
-            className="h-full text-sm md:text-[16px]"
-          >
-            Copy URL
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={() => {
+                    setIsCopied(true);
+                    navigator.clipboard.writeText(shortUrl);
+                    setTimeout(() => {
+                      setIsCopied(false);
+                    }, 2000);
+                  }}
+                  variant={"secondary"}
+                  className="h-full text-sm md:text-[16px]"
+                >
+                  Copy URL
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                {isCopied ? <p>Copied</p> : <p>Copy</p>}
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </form>
         <p className="mt-4">Long URL: {longURL}</p>
       </CardContent>

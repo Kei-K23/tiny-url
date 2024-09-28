@@ -1,5 +1,4 @@
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 
 export const urlMappings = pgTable("url_mappings", {
   id: text("id").primaryKey(),
@@ -7,5 +6,3 @@ export const urlMappings = pgTable("url_mappings", {
   shortUrl: text("short_url").notNull().unique(),
   createdAt: timestamp("created_at").defaultNow(),
 });
-
-export const insertUrlMappingsSchema = createInsertSchema(urlMappings);

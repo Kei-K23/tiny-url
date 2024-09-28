@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { setStorageItems } from "@/lib/storage";
 
 type CreateShortenUrlProps = {
   longURL: string;
@@ -45,9 +46,10 @@ export default function CreateShortenUrl({
     });
     const json = await res.json();
 
-    if (res.ok && json.shortURL) {
-      setShortURL(json.shortURL);
+    if (res.ok && json.data) {
+      setShortURL(json.data.shortUrl);
       setIsLoading(false);
+      setStorageItems("tiny_url_shortened", json.data);
       return;
     } else {
       // Response have error
@@ -69,7 +71,7 @@ export default function CreateShortenUrl({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="flex h-10 md:h-12">
+        <form onSubmit={handleSubmit} className="flex h-10 md:h-12 gap-1">
           <Input
             disabled={isLoading}
             value={longURL}
