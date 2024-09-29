@@ -18,6 +18,35 @@ export const metadata: Metadata = {
   title: "Tiny-URL",
   description:
     "Make your links cleaner, more shareable, and easier to remember. Our URL shortener service transforms long, cluttered URLs into simple, clickable links in just seconds.",
+  openGraph: {
+    siteName: "Tiny-URL",
+    type: "website",
+    description:
+      "Make your links cleaner, more shareable, and easier to remember. Our URL shortener service transforms long, cluttered URLs into simple, clickable links in just seconds.",
+  },
+  keywords: [
+    "url shortener",
+    "tiny url",
+    "short url",
+    "javascript",
+    "react",
+    "nextjs",
+    "service",
+  ],
+  applicationName: "Tiny-URL",
+  appleWebApp: {
+    title: "Tiny-URL",
+    statusBarStyle: "default",
+    capable: true,
+  },
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+        type: "image/x-icon",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
